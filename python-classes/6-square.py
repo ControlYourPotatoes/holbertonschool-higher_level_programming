@@ -15,7 +15,6 @@ class Square:
     def size(self):
         """check size"""
         return (self.__size)
-    
 
     @position.setter
     def position(self, value):
