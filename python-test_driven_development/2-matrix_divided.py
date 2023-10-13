@@ -4,7 +4,7 @@
 
 def matrix_divided(matrix, div):
     """
-    Divides all elements of a matrix by a given number and returns a new matrix.
+    Divides all elements of a matrix by a given number
     """
     # Check if matrix is a list of lists of integers or floats
     if not all(isinstance(row, list) and all(isinstance(num, (int, float)) for num in row) for row in matrix):
