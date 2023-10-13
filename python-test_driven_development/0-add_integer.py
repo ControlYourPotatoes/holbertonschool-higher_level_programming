@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""" Module for adding intergers"""
+
+
 def add_integer(a, b=98):
     """
     Adds two integers or floats together and returns the result as an integer.
