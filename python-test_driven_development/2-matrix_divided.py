@@ -17,13 +17,12 @@ def matrix_divided(matrix, div):
     # Check if div is a number (integer or float)
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
-   
+
     # Check if div is not equal to 0
     if div == 0:
         raise ZeroDivisionError("division by zero")
-   
+
     # Divide all elements of the matrix by div and round to 2 decimal places
     new_matrix = [[round(num / div, 2) for num in row] for row in matrix]
 
     return new_matrix
-
