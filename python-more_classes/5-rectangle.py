@@ -75,3 +75,11 @@ class Rectangle:
         """Print message when an instance of Rectangle is deleted"""
 
         print("Bye rectangle...")
+
+    def __del__(self):
+        """Attribute Decremented during
+         each instance deletion"""
+
+        Rectangle.number_of_instances -= 1
+        print("Bye rectangle...")
+
