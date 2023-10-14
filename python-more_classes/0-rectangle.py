@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module have a class that defines a square """
+"""This module have a class that defines a rectangle """
 
 
 class Rectangle:
