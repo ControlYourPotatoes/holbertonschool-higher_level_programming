@@ -5,11 +5,11 @@
 class Rectangle:
     """
     Class rectangle that defines a
-    rectangel by based on 0-rectangle.py
+    rectangle by based on 0-rectangle.py
     """
 
     def __init__(self, width=0, height=0):
-        """ ?Constructor Method for Rectangle """
+        """ Constructor Method for Rectangle """
 
         self.width = width
         self.height = height
