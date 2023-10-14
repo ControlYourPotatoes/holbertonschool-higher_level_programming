@@ -11,6 +11,8 @@ This is a doctest file for the add_integer function.
 5
 >>> add_integer(2.5, -2.5)
 0
+>>> add_integer(100.3, -2)
+98
 >>> add_integer(2.5)
 Traceback (most recent call last):
     ...
