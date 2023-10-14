@@ -3,10 +3,7 @@
 
 
 class Rectangle:
-    """
-    Class rectangle that defines a
-    rectangel by based on 0-rectangle.py
-    """
+    """Class rectangle that defines a rectangel"""
 
     def __init__(self, width=0, height=0):
         """ Constructor Method for Rectangle """
