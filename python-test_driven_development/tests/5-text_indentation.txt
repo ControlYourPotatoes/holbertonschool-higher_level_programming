@@ -1,0 +1,21 @@
+    >>> tx = __import__('5-text_indentation').text_indentation
+
+Tests:
+
+    >>> tx(24)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+    >>> tx("hello world")
+    hello world
+
+    >>> tx()
+    Traceback (most recent call last):
+    ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+    >>> tx("Hello. World")
+    Hello.
+    <BLANKLINE>
+    World
