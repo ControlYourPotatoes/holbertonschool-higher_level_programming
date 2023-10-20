@@ -5,4 +5,5 @@ Geometry Module
 
 
 class BaseGeometry:
+    """Define BaseGeometry class"""
     pass
