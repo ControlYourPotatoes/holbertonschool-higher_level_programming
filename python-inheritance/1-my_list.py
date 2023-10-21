@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-This module contains class
-named MyList that inherit from list.
-"""
+"""This module contains class inherit from list."""
 
 
 class MyList(list):
@@ -14,4 +11,3 @@ class MyList(list):
             sorted.append(i)
         sorted.sort()
         print(sorted)
-
