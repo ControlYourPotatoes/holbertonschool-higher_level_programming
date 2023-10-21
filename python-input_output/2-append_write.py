@@ -3,6 +3,6 @@
 
 
 def append_file(filename="", text=""):
-    """ Append string to end of file and return character count"""
+    """Append string to end of file and return character count"""
     with open(filename, 'a') as fd:
         return fd.write(text)
