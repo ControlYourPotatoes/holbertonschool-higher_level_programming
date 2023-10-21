@@ -9,7 +9,7 @@ class Student:
     """
     def __init__(self, first_name, last_name, age):
         """
-        Initializes a new Student instance with the given 
+        Initializes a new Student instance with the given
         first_name, last_name and age
         """
         self.first_name = first_name
