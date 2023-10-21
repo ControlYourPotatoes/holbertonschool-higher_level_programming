@@ -2,10 +2,10 @@
 """This module have a function named append_write"""
 
 
-def append_file(filename="", text=""):
+def append_write(filename="", text=""):
     """
-    Append string to end of file and return 
-    character count
+    This function appends a string at the
+    end of a text file and return character count
     """
     with open(filename, 'a') as fd:
         return fd.write(text)
