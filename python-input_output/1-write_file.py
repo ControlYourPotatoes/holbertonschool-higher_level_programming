@@ -3,7 +3,8 @@
 
 
 def write_file(filename="", text=""):
-    """Function that write a
+    """
+    Function that write a
     string to a text file and
     return character count
     """
