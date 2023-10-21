@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """Module for Rectangle class."""
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
+
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 class Rectangle(BaseGeometry):
     """The Rectangle class."""
@@ -12,3 +13,4 @@ class Rectangle(BaseGeometry):
         self.__height = height
         super().integer_validator("width", width)
         super().integer_validator("height", height)
+
