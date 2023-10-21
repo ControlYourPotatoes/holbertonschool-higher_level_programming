@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-"""Module to create a magic string"""
-
-
 def magic_string():
     """Function to create a magic string"""
     magic_string.count = getattr(magic_string, 'count', 0) + 1
