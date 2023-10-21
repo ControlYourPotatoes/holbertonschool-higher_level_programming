@@ -3,9 +3,6 @@
 
 
 def append_write(filename="", text=""):
-    """
-    This function appends a string at the
-    end of a text file and return character count
-    """
+    """Append write to a file"""
     with open(filename, 'a') as fd:
         return fd.write(text)
