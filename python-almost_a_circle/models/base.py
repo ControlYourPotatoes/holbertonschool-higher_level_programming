@@ -2,7 +2,7 @@
 """Base Class Module"""
 
 import json
-
+from os import path
 
 class Base:
     """Base Class"""
@@ -19,7 +19,6 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """Returns JSON string representation of list_dictionaries"""
-        import json
         if list_dictionaries is None:
             return "[]"
         return json.dumps(list_dictionaries)
@@ -27,7 +26,6 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         """Writes JSON string representation of list_objs to a file"""
-        import json
         filename = cls.__name__ + ".json"
         with open(filename, "w") as f:
             if list_objs is None:
