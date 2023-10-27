@@ -7,21 +7,28 @@ from models.rectangle import Rectangle
 class Square(Rectangle):
     """Square Class"""
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a new Square."""
+        """initializes Square instance"""
         super().__init__(size, size, x, y, id)
-
-    def __str__(self):
-        """Return the print() and str() representation of a Square."""
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
-                                                 self.width)
+        self.size = size
 
     @property
     def size(self):
-        """Getter for size"""
-        return super().width
-    
+        """gets private instance attribute size"""
+        return (self.width)
+
     @size.setter
     def size(self, value):
-        """Setter for size"""
-        self.width = value
-        self.height = value
+        """sets private instance attribute size"""
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        elif value <= 0:
+            raise ValueError("width must be > 0")
+        else:
+            self.width = value
+            self.height = value
+
+    def __str__(self):
+        """override __str__ with new string representation"""
+        str_rep = "[Square] ({}) {}/{} - {}".format(
+            str(self.id), str(self.x), str(self.y), str(self.width))
+        return (str_rep)
