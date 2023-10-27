@@ -78,7 +78,7 @@ class Rectangle(Base):
                                                        self.width,
                                                        self.height)
 
-    def update(self, *args, **args):
+    def update(self, *args):
         """Update the Rectangle."""
         if args:
             for i, arg in enumerate(args):
