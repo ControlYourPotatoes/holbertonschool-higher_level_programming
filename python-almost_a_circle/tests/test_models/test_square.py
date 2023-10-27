@@ -2,6 +2,7 @@
 """Module to test square.py"""
 
 import unittest
+import json
 from models.square import Square
 
 
@@ -55,7 +56,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(s1), "[Square] (10) 3/0 - 2")
 
         s1.update(10, 2, 3, 4)
-        self.assertEqual(str(s1), "[Square] (4) 3/4 - 2")
+        self.assertEqual(str(s1), "[Square] (10) 3/4 - 2")
 
     def test_to_dictionary(self):
         s1 = Square(10, 2, 1, 9)
