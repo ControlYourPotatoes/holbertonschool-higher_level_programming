@@ -1,44 +1,60 @@
-#!/usr/bin/python3
-"""Defines unittests for base.py."""
-
-import unittest
 from models.base import Base
 from models.rectangle import Rectangle
-from models.square import Square
+import unittest
 
 class TestBase(unittest.TestCase):
-    """Unittests for testing the Base class."""
+    """ Testing  initialization """
+    def test_init(self):
+        new_obj = Base()
+        self.assertEqual(new_obj._Base__nb_objects, 1)
+        self.assertEqual(new_obj.id, 1)
+        new_obj_2 = Base()
+        self.assertEqual(new_obj_2._Base__nb_objects, 2)
+        self.assertEqual(new_obj_2.id, 2)
+        new_obj_3 = Base(89)
+        self.assertEqual(new_obj_3._Base__nb_objects, 2)
+        self.assertEqual(new_obj_3.id, 89)
 
-    def setUp(self):
-        """Sets up shared testing variables."""
-        Base._Base__nb_objects = 0
-
-    def test_id(self):
-        """Tests id attribute."""
-        b1 = Base()
-        self.assertEqual(b1.id, 1)
-        b2 = Base(12)
-        self.assertEqual(b2.id, 12)
-        b3 = Base()
-        self.assertEqual(b3.id, 2)
-        b4 = Base(-1)
-        self.assertEqual(b4.id, -1)
-
+    """ Testing to json string """
     def test_to_json_string(self):
-        """Tests to_json_string method."""
-        self.assertEqual(Base.to_json_string(None), "[]")
-        self.assertEqual(Base.to_json_string([]), "[]")
-        self.assertEqual(Base.to_json_string([{"id": 1}]), "[{\"id\": 1}]")
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        dic = r1.to_dictionary()
+        json = Base.to_json_string([dic])
+        self.assertEqual(json, '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}]')
 
-    def test_from_json_string(self):
-        """Tests from_json_string method."""
-        self.assertEqual(Base.from_json_string(None), [])
-        self.assertEqual(Base.from_json_string(""), [])
-        self.assertEqual(Base.from_json_string("[]"), [])
-        self.assertEqual(Base.from_json_string("[{\"id\": 1}]"), [{"id": 1}])
+    def test_to_json_empty(self):
+        json = Base.to_json_string([])
+        self.assertEqual(json, '[]')
 
-    def test_create(self):
-        """Tests create method."""
-        r1 = Rectangle(3, 5, 1)
-        r1_dictionary = r1.to_dictionary()
-        r2 = Rectangle(1, 1)
+    def test_to_json_none(self):
+        json = Base.to_json_string(None)
+        self.assertEqual(json, '[]')
+
+    """ Testing from json to string """
+    def test_json_srting(self):
+        json = Base.from_json_string(None)
+        self.assertEqual(json, [])
+
+    def test_json_str(self):
+        json = Base.from_json_string("[]")
+        self.assertEqual(json, [])
+
+    def test_json_str_good(self):
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_li_input = Base.to_json_string(list_input)
+        json_output = Base.from_json_string(json_li_input)
+        self.assertIsInstance(json_output, list)
+
+    def test_json_str_empty(self):
+        json = Base.from_json_string(None)
+        self.assertEqual(json, [])
+
+    def test_json_str_empty_2(self):
+        json = Base.from_json_string("[]")
+        self.assertEqual(json, [])
+
+if __name__ == '__main__':
+    unittest.main()
