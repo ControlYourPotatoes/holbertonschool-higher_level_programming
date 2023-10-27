@@ -4,6 +4,7 @@
 import json
 from os import path
 
+
 class Base:
     """Base Class"""
     __nb_objects = 0
@@ -25,7 +26,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Write the JSON serialization of a list of objects to a file."""
+        """Write the JSON serialization to a file"""
         filename = cls.__name__ + ".json"
         with open(filename, "w") as jsonfile:
             if list_objs is None:
