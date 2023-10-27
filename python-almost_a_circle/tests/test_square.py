@@ -6,6 +6,7 @@ from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
+    """Test cases for Square class"""
     def test_init(self):
         s1 = Square(5)
         self.assertEqual(s1.size, 5)

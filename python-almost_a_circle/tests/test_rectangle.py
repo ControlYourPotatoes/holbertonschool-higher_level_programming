@@ -6,6 +6,7 @@ from models.rectangle import Rectangle
 
 
 class TestRectangle(unittest.TestCase):
+    """Test cases for Rectangle class"""
     def test_init(self):
         r = Rectangle(10, 20)
         self.assertEqual(r.width, 10)
