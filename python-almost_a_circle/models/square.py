@@ -24,3 +24,6 @@ class Square(Rectangle):
         """Setter for size"""
         self.width = value
         self.height = value
+
+    def to_dictionary(self):
+        return super().to_dictionary()
