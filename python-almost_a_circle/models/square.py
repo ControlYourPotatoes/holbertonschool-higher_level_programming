@@ -32,7 +32,7 @@ class Square(Rectangle):
         str_rep = "[Square] ({}) {}/{} - {}".format(
             str(self.id), str(self.x), str(self.y), str(self.width))
         return (str_rep)
-    
+
     def update(self, *args, **kwargs):
         """Assigns the attribute"""
         if args is not None:
