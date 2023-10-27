@@ -34,24 +34,26 @@ class Square(Rectangle):
         return (str_rep)
     
     def update(self, *args, **kwargs):
-        """assigns an argument to each attribute"""
-        if args:
-            for i, arg in enumerate(args):
-                if i == 0:
+        """Assigns the attribute"""
+        if args is not None:
+            count = 0
+            for arg in args:
+                if count == 0:
                     self.id = arg
-                elif i == 1:
-                    self.size = arg
-                elif i == 2:
+                if count == 1:
+                    self.width = arg
+                if count == 2:
                     self.x = arg
-                elif i == 3:
+                if count == 3:
                     self.y = arg
-        else:
-            for key, value in kwargs.items():
-                if key == "id":
-                    self.id = value
-                elif key == "size":
-                    self.size = value
-                elif key == "x":
-                    self.x = value
-                elif key == "y":
-                    self.y = value
+                count += 1
+
+        for key, elem in kwargs.items():
+            if key == "id":
+                self.id = elem
+            if key == "size":
+                self.width = elem
+            if key == "x":
+                self.x = elem
+            if key == "y":
+                self.y = elem
