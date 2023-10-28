@@ -62,4 +62,5 @@ class Base:
                 list_dicts = Base.from_json_string(jsonfile.read())
                 return [cls.create(**d) for d in list_dicts]
         else:
+            
             return []
