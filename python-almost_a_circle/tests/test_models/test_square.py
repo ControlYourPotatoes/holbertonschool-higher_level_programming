@@ -1,65 +1,95 @@
-#!/usr/bin/python3
-"""Module to test square.py"""
-
-import unittest
-import json
 from models.square import Square
+import unittest
 
 
 class TestSquare(unittest.TestCase):
-    """Test cases for Square class"""
-    def test_init(self):
-        s1 = Square(5)
-        self.assertEqual(s1.size, 5)
-        self.assertEqual(s1.x, 0)
-        self.assertEqual(s1.y, 0)
-        self.assertIsNotNone(s1.id)
 
-        s2 = Square(10, 2, 3)
-        self.assertEqual(s2.size, 10)
-        self.assertEqual(s2.x, 2)
-        self.assertEqual(s2.y, 3)
-        self.assertIsNotNone(s2.id)
+    """ Checker preference """
+    def test_checker(self):
+        with self.assertRaises(ValueError):
+            sqr = Square(0)
 
-        s3 = Square(3, 1, 1, 12)
-        self.assertEqual(s3.size, 3)
-        self.assertEqual(s3.x, 1)
-        self.assertEqual(s3.y, 1)
-        self.assertEqual(s3.id, 12)
-
-    def test_str(self):
-        s1 = Square(5, 2, 1, 9)
-        self.assertEqual(str(s1), "[Square] (9) 2/1 - 5")
-
-        s2 = Square(10, 0, 0, 8)
-        self.assertEqual(str(s2), "[Square] (8) 0/0 - 10")
-
+    """ Testing size """
     def test_size(self):
-        s1 = Square(5)
-        self.assertEqual(s1.size, 5)
+        sqr = Square(1, 2)
+        self.assertEqual(sqr.size, 1)
 
-        s1.size = 10
-        self.assertEqual(s1.size, 10)
+    """ Testing width """
+    def test_width(self):
+        sqr = Square(1, 2, 3)
+        self.assertEqual(sqr.width, 1)
 
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            s1.size = -10
+    """ Testing a str as argument """
+    def test_str_1_arg(self):
+        with self.assertRaises(TypeError):
+            sqr = Square("1")
 
+    def test_str_2_arg(self):
+        with self.assertRaises(TypeError):
+            sqr = Square(1, "2")
+
+    def test_str_3_arg(self):
+        with self.assertRaises(TypeError):
+            sqr = Square(1, 2, "3")
+
+    """ Testing Negative Arguments """
+    def test_neg_arg_1(self):
+        with self.assertRaises(ValueError):
+            sqr = Square(-1)
+
+    def test_neg_arg_2(self):
+        with self.assertRaises(ValueError):
+            sqr = Square(1, -2)
+
+    def test_neg_arg_3(self):
+        with self.assertRaises(ValueError):
+            sqr = Square(1, 2, -3)
+
+    """ Testing to_dictionary method """
+    def test_to_dic(self):
+        sqr = Square(10, 2, 1, 6)
+        result = {'id': 6, 'x': 2, 'size': 10, 'y': 1}
+        self.assertDictEqual(sqr.to_dictionary(), result)
+
+    """ Testing update method """
     def test_update(self):
-        s1 = Square(5, 0, 0, 1)
-        s1.update(10)
-        self.assertEqual(str(s1), "[Square] (10) 0/0 - 5")
+        sqr = Square(5)
+        sqr.update(10)
+        self.assertEqual(sqr.id, 10)
+        sqr.update(1, 2)
+        self.assertEqual(sqr.id, 1)
+        self.assertEqual(sqr.width, 2)
+        sqr.update(1, 2, 3)
+        self.assertEqual(sqr.x, 3)
+        sqr.update(1, 2, 3, 4)
+        self.assertEqual(sqr.y, 4)
 
-        s1.update(10, 2)
-        self.assertEqual(str(s1), "[Square] (10) 0/0 - 2")
+    """ Testing create method """
+    def test_create(self):
+        sqr1 = Square(2)
+        sqr1_dic = sqr1.to_dictionary()
+        sqr2 = Square.create(**sqr1_dic)
+        self.assertNotEqual(sqr1, sqr2)
 
-        s1.update(10, 2, 3)
-        self.assertEqual(str(s1), "[Square] (10) 3/0 - 2")
+    """ Testing to save to file """
+    def test_save_to_file_empty(self):
+        Square.save_to_file(None)
+        with open("Square.json") as fd:
+            self.assertEqual('[]', fd.read())
 
-        s1.update(10, 2, 3, 4)
-        self.assertEqual(str(s1), "[Square] (10) 3/4 - 2")
+    def test_save_to_file_empty_2(self):
+        Square.save_to_file([])
+        with open("Square.json") as fd:
+            self.assertEqual('[]', fd.read())
 
-    def test_to_dictionary(self):
-        s1 = Square(10, 2, 1, 9)
-        s1_dict = s1.to_dictionary()
-        expected = {'id': 9, 'size': 10, 'x': 2, 'y': 1}
-        self.assertDictEqual(s1_dict, expected)
+    """ Test load from file """
+    def test_load_file(self):
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_squares_input = [s1, s2]
+        Square.save_to_file(list_squares_input)
+        li_sqr_out = Square.load_from_file()
+        self.assertNotEqual(li_sqr_out[0], s1)
+
+if __name__ == '__main__':
+    unittest.main()
